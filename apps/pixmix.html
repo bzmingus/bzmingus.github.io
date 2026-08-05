@@ -13,6 +13,7 @@
     --muted: #a8a396;
     --gold: #c9a35c;
     --line: #3a3d45;
+    --live: #4caf7d;
   }
   * { box-sizing: border-box; }
   body {
@@ -54,9 +55,21 @@
     text-transform: uppercase;
     padding: 3px 10px;
     border-radius: 999px;
-    border: 1px solid var(--gold);
-    color: var(--gold);
+    border: 1px solid var(--live);
+    color: var(--live);
   }
+  .storebtn {
+    display: inline-block;
+    background: var(--gold);
+    color: #23252b;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    margin: 8px 0 4px;
+  }
+  .storebtn:hover { filter: brightness(1.08); }
+  .storenote { color: var(--muted); font-size: 14px; margin-top: 6px; }
   h2 { font-size: 21px; margin: 36px 0 10px; color: var(--gold); }
   .game {
     background: var(--panel);
@@ -95,11 +108,14 @@
   <img src="../assets/pixmix-icon.png" alt="Pix Mix app icon">
   <div>
     <h1>Pix Mix</h1>
-    <span class="badge">Coming soon — iOS &amp; Android</span>
+    <span class="badge">Available on Google Play</span>
   </div>
 </div>
 
 <p>Three picture games, one app. Hundreds of original images to unscramble, uncover, and explore.</p>
+
+<a class="storebtn" href="https://play.google.com/store/apps/details?id=com.braynegames.pixmix">Get it on Google Play</a>
+<div class="storenote">iOS version coming soon.</div>
 
 <div class="game">
   <strong>Art Remix</strong>
