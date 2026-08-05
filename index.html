@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Brayne Games — Privacy Policy</title>
+<title>Brayne Games</title>
+<meta name="description" content="Brayne Games — puzzle, word, and board games for iOS and Android, hosted by Bryan Brayne.">
 <style>
   :root {
     --bg: #23252b;
@@ -12,6 +13,7 @@
     --muted: #a8a396;
     --gold: #c9a35c;
     --line: #3a3d45;
+    --live: #4caf7d;
   }
   * { box-sizing: border-box; }
   body {
@@ -21,7 +23,7 @@
     font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
   .wrap {
-    max-width: 720px;
+    max-width: 860px;
     margin: 0 auto;
     padding: 48px 24px 80px;
   }
@@ -50,39 +52,77 @@
     font-size: 34px;
     line-height: 1.2;
   }
-  .effective {
-    color: var(--muted);
-    font-size: 15px;
+  .tagline { color: var(--muted); font-size: 17px; }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 8px;
   }
-  .tldr {
+  .card {
+    display: block;
     background: var(--panel);
     border: 1px solid var(--line);
-    border-left: 4px solid var(--gold);
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin: 0 0 36px;
+    border-radius: 12px;
+    padding: 22px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color .15s, transform .15s;
   }
-  .tldr strong { color: var(--gold); }
-  h2 {
+  .card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .card img {
+    width: 84px;
+    height: 84px;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    display: block;
+    margin-bottom: 14px;
+  }
+  .card h2 {
+    margin: 0 0 6px;
     font-size: 21px;
-    margin: 40px 0 10px;
-    padding-top: 8px;
   }
-  h2 span {
+  .card p {
+    margin: 0 0 12px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+  }
+  .badge.live {
+    color: var(--live);
+    border-color: var(--live);
+  }
+  .badge.soon {
     color: var(--gold);
-    margin-right: 10px;
+    border-color: var(--gold);
   }
-  p { margin: 10px 0; }
-  ul { margin: 10px 0 10px 4px; padding-left: 22px; }
-  li { margin: 6px 0; }
-  a { color: var(--gold); }
-  .contact {
-    margin-top: 48px;
+  footer {
+    margin-top: 56px;
     padding-top: 24px;
     border-top: 1px solid var(--line);
     color: var(--muted);
     font-size: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    align-items: center;
   }
+  footer a { color: var(--gold); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -92,62 +132,47 @@
 
 <header>
   <div class="studio">Brayne Games</div>
-  <h1>Privacy Policy</h1>
-  <div class="effective">Effective date: July 14, 2026</div>
+  <h1>Games with personality.</h1>
+  <div class="tagline">Puzzle, word, and board games for iOS and Android — hosted by Bryan Brayne.</div>
 </header>
 
-<p>This Privacy Policy explains what information our apps collect, how it is used, and the choices available to you.</p>
+<div class="cards">
 
-<div class="tldr">
-  <strong>TL;DR:</strong> Brayne Games does not collect, store, or share any names, email addresses, passwords, or any personally identifying details from users.
+  <a class="card" href="apps/cryptograms.html">
+    <img src="assets/cryptograms-icon.png" alt="Cryptograms app icon">
+    <h2>Cryptograms</h2>
+    <p>Crack the code, reveal the quote. Classic letter-substitution puzzles with hundreds of famous quotations.</p>
+    <span class="badge live">On Google Play</span>
+  </a>
+
+  <a class="card" href="apps/pixmix.html">
+    <img src="assets/pixmix-icon.png" alt="Pix Mix app icon">
+    <h2>Pix Mix</h2>
+    <p>Three picture games in one: rebuild scrambled art, reveal hidden images, and search giant scenes.</p>
+    <span class="badge soon">Coming soon</span>
+  </a>
+
+  <a class="card" href="apps/braynegames.html">
+    <img src="assets/braynegames-icon.png" alt="Brayne Games app icon">
+    <h2>Brayne Games</h2>
+    <p>The flagship collection — over twenty puzzle, word, and board games in a single app, with opponents you'll love to beat.</p>
+    <span class="badge">In development</span>
+  </a>
+
+  <a class="card" href="apps/standoff.html">
+    <img src="assets/standoff-icon.png" alt="Standoff app icon">
+    <h2>Standoff</h2>
+    <p>A chess-logic puzzle: place every piece so that nobody can capture anybody. Easy to learn, brutal to master.</p>
+    <span class="badge">In development</span>
+  </a>
+
 </div>
 
-<h2><span>1.</span>Advertising (AdMob)</h2>
-<p>Our apps use Google AdMob to display both personalized and non-personalized ads. AdMob may collect:</p>
-<ul>
-  <li>Device information (model, OS version, language, country)</li>
-  <li>Advertising ID</li>
-  <li>Approximate location (country or region)</li>
-  <li>App usage data related to ad performance (impressions, clicks, etc.)</li>
-</ul>
-<p>If you allow personalized ads, Google may use your device&rsquo;s advertising ID and app activity to show more relevant ads. If you choose non-personalized ads, you will still see ads, but they will not be tailored to you.</p>
-<p>You can learn more about how Google uses this data at <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>.</p>
-
-<h2><span>2.</span>EU/EEA Consent (GDPR)</h2>
-<p>Users in the European Union, EEA, and UK are shown a consent form provided by Google&rsquo;s User Messaging Platform (UMP). Before personalized ads or analytics are used, EU users can choose to:</p>
-<ul>
-  <li>Allow personalized ads</li>
-  <li>Allow non-personalized ads</li>
-  <li>Allow or reject analytics tracking</li>
-  <li>Reject all non-essential tracking</li>
-</ul>
-<p>Your choices are stored on your device and can be changed at any time through your system settings (resetting the advertising ID resets consent). If consent is not given, the app will only serve non-personalized ads and essential services.</p>
-
-<h2><span>3.</span>Children&rsquo;s Privacy</h2>
-<p>Our apps are intended for general audiences but are not designed for children under 13. We do not knowingly collect personal information from children.</p>
-
-<h2><span>4.</span>Third-Party Data Sharing</h2>
-<p>We do not sell or share any data with third parties outside of Google AdMob&rsquo;s / Firebase services. Data collected by Google services (AdMob, Firebase) is governed by Google&rsquo;s own privacy policies.</p>
-
-<h2><span>5.</span>Data Security</h2>
-<p>We do not store any personal information on our servers. All analytics and advertising data is processed by Google&rsquo;s secure systems.</p>
-
-<h2><span>6.</span>Your Choices</h2>
-<p>You may:</p>
-<ul>
-  <li>Opt out of personalized ads using your device settings</li>
-  <li>Reset your Android Advertising ID at any time</li>
-  <li>Decline analytics and personalized ads if you are in the EU/EEA</li>
-  <li>Uninstall the app at any time to stop all data collection</li>
-</ul>
-
-<h2><span>7.</span>Changes to This Policy</h2>
-<p>We may update this Privacy Policy occasionally. The updated version will always be posted within the app or on the app store listing.</p>
-
-<h2><span>8.</span>Contact</h2>
-<p>If you have questions about this Privacy Policy, contact us at <a href="mailto:admin@BrayneGames.com">admin@BrayneGames.com</a>.</p>
-
-<div class="contact">&copy; 2026 Brayne Games &middot; braynegames.com</div>
+<footer>
+  <span>&copy; 2026 Brayne Games</span>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="mailto:admin@BrayneGames.com">admin@BrayneGames.com</a>
+</footer>
 
 </div>
 </body>
