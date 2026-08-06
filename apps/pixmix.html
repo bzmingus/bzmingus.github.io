@@ -81,13 +81,19 @@
   }
   .game strong { color: var(--gold); }
   .game p { margin: 6px 0 0; color: var(--ink); }
-  .shots {
-    background: var(--panel);
-    border: 1px dashed var(--line);
+  .shotrow {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding: 4px 0 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .shotrow img {
+    height: 420px;
+    width: auto;
     border-radius: 10px;
-    padding: 36px 20px;
-    text-align: center;
-    color: var(--muted);
+    border: 1px solid var(--line);
+    flex-shrink: 0;
   }
   footer {
     margin-top: 56px;
@@ -133,7 +139,14 @@
 </div>
 
 <h2>Screenshots</h2>
-<div class="shots">Screenshots coming soon.</div>
+<div class="shotrow">
+  <img src="../assets/shots/pixmix/02.jpg" alt="Pix Mix main menu">
+  <img src="../assets/shots/pixmix/03.jpg" alt="Art Remix gameplay">
+  <img src="../assets/shots/pixmix/04.jpg" alt="Pixplosion gameplay">
+  <img src="../assets/shots/pixmix/05.jpg" alt="Big Picture gameplay">
+  <img src="../assets/shots/pixmix/06.jpg" alt="Pix Mix gallery">
+  <img src="../assets/shots/pixmix/01.jpg" alt="Pix Mix splash screen">
+</div>
 
 <footer>
   &copy; 2026 Brayne Games &middot; <a href="../privacy.html">Privacy Policy</a> &middot; <a href="mailto:admin@BrayneGames.com">admin@BrayneGames.com</a>
