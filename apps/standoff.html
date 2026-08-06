@@ -60,6 +60,16 @@
   h2 { font-size: 21px; margin: 36px 0 10px; color: var(--gold); }
   ul { margin: 10px 0; padding-left: 22px; }
   li { margin: 6px 0; }
+  .game {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 0 0 16px;
+  }
+  .game strong { color: var(--gold); }
+  .game p { margin: 6px 0 0; color: var(--ink); }
   .shots {
     background: var(--panel);
     border: 1px dashed var(--line);
@@ -91,11 +101,25 @@
   </div>
 </div>
 
-<p>You know how the chess pieces move. Now put that knowledge to work: place every piece on the board so that <em>nobody</em> can capture <em>anybody</em>. A perfect standoff — or no deal.</p>
+<p>Three chess-logic puzzles, one app. You know how the pieces move — now put that knowledge to work. No chess match, no clock, just the puzzle.</p>
+
+<div class="game">
+  <strong>Standoff</strong>
+  <p>Place every piece on the board so that <em>nobody</em> can capture <em>anybody</em>. A perfect standoff — or no deal.</p>
+</div>
+
+<div class="game">
+  <strong>Queens</strong>
+  <p>One queen in every color region — but no two queens may share a row, a column, or touch diagonally. Simple rules, devious boards.</p>
+</div>
+
+<div class="game">
+  <strong>Rooks &amp; Bishops</strong>
+  <p>Same idea, new arsenal: fill the regions with rooks and bishops without leaving a single piece in another's line of attack.</p>
+</div>
 
 <h2>Features</h2>
 <ul>
-  <li>Pure chess logic — no chess match, no clock, just the puzzle</li>
   <li>Multiple board sizes and difficulty levels</li>
   <li>Assists for learners: see exactly which squares a piece threatens</li>
 </ul>
