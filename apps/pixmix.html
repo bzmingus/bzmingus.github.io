@@ -95,6 +95,24 @@
     border: 1px solid var(--line);
     flex-shrink: 0;
   }
+  .panwrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    margin-top: 16px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .panwrap img {
+    height: 340px;
+    width: auto;
+    max-width: none;
+    display: block;
+  }
+  .pancaption {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 8px 2px 0;
+  }
   footer {
     margin-top: 56px;
     padding-top: 24px;
@@ -138,6 +156,11 @@
   <p>One enormous scene, chopped into a grid of tiles and scrambled. Swap the tiles to rebuild it — pieces lock in as you place them right, until the whole panorama comes together.</p>
 </div>
 
+<div class="panwrap">
+  <img src="../assets/shots/pixmix/panorama_fossil.jpg" alt="A Big Picture panorama: a fossil excavation scene" loading="lazy">
+</div>
+<div class="pancaption">One real Big Picture panorama — this entire scene is a single puzzle. Scroll it.</div>
+
 <h2>Screenshots</h2>
 <div class="shotrow">
   <img src="../assets/shots/pixmix/02.jpg" alt="Pix Mix main menu">
@@ -145,7 +168,6 @@
   <img src="../assets/shots/pixmix/04.jpg" alt="Pixplosion gameplay">
   <img src="../assets/shots/pixmix/05.jpg" alt="Big Picture gameplay">
   <img src="../assets/shots/pixmix/06.jpg" alt="Pix Mix gallery">
-  <img src="../assets/shots/pixmix/01.jpg" alt="Pix Mix splash screen">
 </div>
 
 <footer>
