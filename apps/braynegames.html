@@ -83,8 +83,21 @@
     background: var(--panel);
     border: 1px solid var(--line);
     border-radius: 6px;
-    padding: 7px 12px;
+    padding: 0;
     font-size: 15px;
+  }
+  .gamelist li a {
+    display: block;
+    padding: 7px 12px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .gamelist li a:hover {
+    color: var(--gold);
+  }
+  .gamelist li.soon {
+    padding: 7px 12px;
+    color: var(--muted);
   }
   .shots {
     background: var(--panel);
@@ -124,30 +137,27 @@
 
 <h2>The lineup so far</h2>
 <ul class="gamelist">
-  <li>Checkers</li>
-  <li>Reversi</li>
-  <li>Crokinole</li>
-  <li>Carrom</li>
-  <li>Mancala</li>
-  <li>Shuffleboard</li>
-  <li>Killer Sudoku</li>
-  <li>Cross Sums</li>
-  <li>Word Spiral</li>
-  <li>Swapple</li>
-  <li>21 Words</li>
-  <li>Hangman</li>
-  <li>Memory</li>
-  <li>Color Flood</li>
-  <li>Lines &amp; Boxes</li>
-  <li>Hexes</li>
-  <li>Trash</li>
-  <li>Tic Tac Toe</li>
-  <li>Connect Two</li>
-  <li>&hellip;and more</li>
+  <li><a href="games/checkers.html">Checkers</a></li>
+  <li><a href="games/reversi.html">Reversi</a></li>
+  <li><a href="games/crokinole.html">Crokinole</a></li>
+  <li><a href="games/carrom.html">Carrom</a></li>
+  <li><a href="games/mancala.html">Mancala</a></li>
+  <li><a href="games/shuffle.html">Shuffleboard</a></li>
+  <li><a href="games/killersudoku.html">Killer Sudoku</a></li>
+  <li><a href="games/crosssums.html">Cross Sums</a></li>
+  <li><a href="games/wordspiral.html">Word Spiral</a></li>
+  <li><a href="games/swapple.html">Swapple</a></li>
+  <li><a href="games/hangman.html">Hangman</a></li>
+  <li><a href="games/memory.html">Memory</a></li>
+  <li><a href="games/colorflood.html">Color Flood</a></li>
+  <li><a href="games/boxes.html">Lines &amp; Boxes</a></li>
+  <li><a href="games/trash.html">Trash</a></li>
+  <li><a href="games/tictactoe.html">Tic Tac Toe</a></li>
+  <li><a href="games/connecttwo.html">Connect Two</a></li>
+  <li><a href="games/standoff.html">Standoff</a></li>
+  <li class="soon">Hexes</li>
+  <li class="soon">21 Words</li>
 </ul>
-
-<h2>Screenshots</h2>
-<div class="shots">Screenshots coming soon.</div>
 
 <h2>Want a game we don't have?</h2>
 <p>The collection keeps growing, and requests genuinely steer what gets built next. If there's a game you'd love to see in here — a classic we're missing, a puzzle type you're hooked on, anything — tell us: <a href="mailto:admin@BrayneGames.com?subject=Game%20request">admin@BrayneGames.com</a>.</p>
