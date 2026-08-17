@@ -88,6 +88,19 @@
     padding: 4px 0 12px;
     -webkit-overflow-scrolling: touch;
   }
+  .videorow {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding: 4px 0 12px;
+  }
+  .videorow video {
+    height: 420px;
+    width: auto;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: #000;
+  }
   .shotrow img {
     height: 420px;
     width: auto;
@@ -163,6 +176,14 @@
   <img src="../assets/shots/pixmix/panorama_fossil.jpg" alt="A Big Picture panorama: a fossil excavation scene" loading="lazy">
 </div>
 <div class="pancaption">One real Big Picture panorama, seen the way you see it in the game — scroll it. The whole scene is a single puzzle.</div>
+
+<h2>See it in action</h2>
+<div class="videorow">
+  <video src="../assets/video/pixmix_ad.mp4" controls playsinline preload="metadata"
+         aria-label="Big Picture gameplay: Bryan's hand rebuilds a whole panorama"></video>
+  <video src="../assets/video/pixplosion_ad.mp4" controls playsinline preload="metadata"
+         aria-label="Pixplosion gameplay: exploded shards spin back into a picture"></video>
+</div>
 
 <h2>Screenshots</h2>
 <div class="shotrow">
