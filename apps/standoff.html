@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Standoff — Brayne Games</title>
-<meta name="description" content="Standoff by Brayne Games — a chess-logic puzzle: place every piece so that no piece can capture another. In development.">
+<meta name="description" content="Standoff by Brayne Games — chess-logic puzzles: place every piece so that no piece can capture another. On the App Store.">
 <style>
   :root {
     --bg: #23252b;
@@ -57,6 +57,17 @@
     border: 1px solid var(--line);
     color: var(--muted);
   }
+  .storebtn {
+    display: inline-block;
+    background: var(--gold);
+    color: #23252b;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    margin: 8px 8px 4px 0;
+  }
+  .storebtn:hover { filter: brightness(1.08); }
   h2 { font-size: 21px; margin: 36px 0 10px; color: var(--gold); }
   ul { margin: 10px 0; padding-left: 22px; }
   li { margin: 6px 0; }
@@ -70,13 +81,19 @@
   }
   .game strong { color: var(--gold); }
   .game p { margin: 6px 0 0; color: var(--ink); }
-  .shots {
-    background: var(--panel);
-    border: 1px dashed var(--line);
+  .shotrow {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding: 4px 0 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .shotrow img {
+    height: 420px;
+    width: auto;
     border-radius: 10px;
-    padding: 36px 20px;
-    text-align: center;
-    color: var(--muted);
+    border: 1px solid var(--line);
+    flex-shrink: 0;
   }
   footer {
     margin-top: 56px;
@@ -97,11 +114,13 @@
   <img src="../assets/standoff-icon.png" alt="Standoff app icon">
   <div>
     <h1>Standoff</h1>
-    <span class="badge">In development</span>
+    <span class="badge">Available on the App Store</span>
   </div>
 </div>
 
 <p>Three chess-logic puzzles, one app. You know how the pieces move — now put that knowledge to work. No chess match, no clock, just the puzzle.</p>
+
+<a class="storebtn" href="https://apps.apple.com/app/brayne-games-standoff/id6760240247">Download on the App Store</a>
 
 <div class="game">
   <strong>Standoff</strong>
@@ -125,7 +144,13 @@
 </ul>
 
 <h2>Screenshots</h2>
-<div class="shots">Screenshots coming soon.</div>
+<div class="shotrow">
+  <img src="../assets/shots/standoff/01_standoff_hero.jpg" alt="Standoff gameplay: placing chess pieces so none can capture another">
+  <img src="../assets/shots/standoff/02_truce.jpg" alt="A solved Standoff board — a perfect truce">
+  <img src="../assets/shots/standoff/03_queens.jpg" alt="Queens gameplay: one queen per color region">
+  <img src="../assets/shots/standoff/04_rooks.jpg" alt="Rooks &amp; Bishops gameplay">
+  <img src="../assets/shots/standoff/05_pieceguide.jpg" alt="The piece guide showing threatened squares">
+</div>
 
 <footer>
   &copy; 2026 Brayne Games &middot; <a href="../privacy.html">Privacy Policy</a> &middot; <a href="mailto:admin@BrayneGames.com">admin@BrayneGames.com</a>
