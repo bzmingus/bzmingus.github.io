@@ -122,6 +122,34 @@
     max-width: none;
     display: block;
   }
+  #bpdemo {
+    position: relative;
+    height: 340px;
+    touch-action: pan-x;
+  }
+  .bptile {
+    position: absolute;
+    background-image: url("../assets/shots/pixmix/panorama_fossil.jpg");
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: left .28s ease, top .28s ease;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.25);
+  }
+  .bptile.sel {
+    box-shadow: inset 0 0 0 3px #e2c878;
+    z-index: 3;
+  }
+  .bptile.locked {
+    cursor: default;
+    box-shadow: none;
+  }
+  .bptile.justlocked {
+    animation: bplock .5s ease;
+  }
+  @keyframes bplock {
+    0%   { box-shadow: inset 0 0 0 4px #e2c878; }
+    100% { box-shadow: none; }
+  }
   .pancaption {
     color: var(--muted);
     font-size: 14px;
@@ -173,9 +201,91 @@
 </div>
 
 <div class="panwrap">
-  <img src="../assets/shots/pixmix/panorama_fossil.jpg" alt="A Big Picture panorama: a fossil excavation scene" loading="lazy">
+  <div id="bpdemo" role="application" aria-label="Playable Big Picture demo: swap tiles to rebuild the fossil panorama"></div>
 </div>
-<div class="pancaption">One real Big Picture panorama, seen the way you see it in the game — scroll it. The whole scene is a single puzzle.</div>
+<div class="pancaption" id="bpcaption">A real Big Picture panorama — and a real puzzle. Scroll it, then tap two tiles to swap them. Right placements lock in.</div>
+<script>
+(function () {
+  // The playable Big Picture demo: the panorama above, chopped 3x13 and
+  // scrambled. Tap two tiles to swap; correct placements lock.
+  var SRC_W = 1880, SRC_H = 420, ROWS = 3, COLS = 13;
+  var srcTile = SRC_H / ROWS;                  // 140px source tiles
+  var scale = 340 / SRC_H;
+  var T = srcTile * scale;                     // display tile size
+  var board = document.getElementById('bpdemo');
+  var caption = document.getElementById('bpcaption');
+  board.style.width = (COLS * T) + 'px';
+
+  // slot i holds piece perm[i]; piece p belongs at slot p
+  var N = ROWS * COLS, perm = [], tiles = [], sel = -1, locked = [];
+  for (var i = 0; i < N; i++) perm.push(i);
+  do {
+    for (var i = N - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = perm[i]; perm[i] = perm[j]; perm[j] = t;
+    }
+  } while (countHome() > 3);                   // nearly fully scrambled
+
+  function countHome() {
+    var n = 0;
+    for (var i = 0; i < N; i++) if (perm[i] === i) n++;
+    return n;
+  }
+  function place(el, slot) {
+    el.style.left = (slot % COLS) * T + 'px';
+    el.style.top = Math.floor(slot / COLS) * T + 'px';
+  }
+  for (var p = 0; p < N; p++) {
+    var el = document.createElement('div');
+    el.className = 'bptile';
+    el.style.width = T + 'px';
+    el.style.height = T + 'px';
+    el.style.backgroundSize = (SRC_W * scale) + 'px ' + (SRC_H * scale) + 'px';
+    el.style.backgroundPosition = (-(p % COLS) * T) + 'px ' + (-Math.floor(p / COLS) * T) + 'px';
+    tiles.push(el);
+    board.appendChild(el);
+  }
+  for (var i = 0; i < N; i++) { place(tiles[perm[i]], i); locked.push(false); }
+  for (var i = 0; i < N; i++) if (perm[i] === i) lockSlot(i, false);
+
+  function lockSlot(i, flash) {
+    locked[i] = true;
+    var el = tiles[perm[i]];
+    el.classList.add('locked');
+    if (flash) {
+      el.classList.add('justlocked');
+      setTimeout(function () { el.classList.remove('justlocked'); }, 520);
+    }
+  }
+  function slotOf(el) {
+    var p = tiles.indexOf(el);
+    for (var i = 0; i < N; i++) if (perm[i] === p) return i;
+    return -1;
+  }
+  board.addEventListener('click', function (e) {
+    var el = e.target.closest('.bptile');
+    if (!el) return;
+    var slot = slotOf(el);
+    if (slot < 0 || locked[slot]) return;
+    if (sel === slot) {                        // deselect
+      el.classList.remove('sel'); sel = -1; return;
+    }
+    if (sel < 0) {                             // first pick
+      sel = slot; el.classList.add('sel'); return;
+    }
+    var a = sel, b = slot; sel = -1;
+    tiles[perm[a]].classList.remove('sel');
+    var t = perm[a]; perm[a] = perm[b]; perm[b] = t;
+    place(tiles[perm[a]], a);
+    place(tiles[perm[b]], b);
+    if (perm[a] === a) lockSlot(a, true);
+    if (perm[b] === b) lockSlot(b, true);
+    if (countHome() === N) {
+      caption.innerHTML = 'You rebuilt the whole thing! That was one of a hundred panoramas — <a href="https://apps.apple.com/app/id6788990294">get Pix Mix on the App&nbsp;Store</a>.';
+    }
+  });
+})();
+</script>
 
 <h2>See it in action</h2>
 <div class="videorow">
