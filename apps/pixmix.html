@@ -125,7 +125,7 @@
   #bpdemo {
     position: relative;
     height: 340px;
-    touch-action: pan-x;
+    touch-action: none;   /* single finger drags tiles, like the game */
   }
   .bptile {
     position: absolute;
@@ -135,9 +135,11 @@
     transition: left .28s ease, top .28s ease;
     box-shadow: inset 0 0 0 1px rgba(0,0,0,.25);
   }
-  .bptile.sel {
-    box-shadow: inset 0 0 0 3px #e2c878;
-    z-index: 3;
+  .bptile.drag {
+    z-index: 5;
+    transition: none;
+    transform: scale(1.06);
+    box-shadow: 0 6px 18px rgba(0,0,0,.45), inset 0 0 0 2px #e2c878;
   }
   .bptile.locked {
     cursor: default;
@@ -145,6 +147,14 @@
   }
   .bptile.justlocked {
     animation: bplock .5s ease;
+  }
+  .bptile.homehint {
+    animation: bppulse .8s ease-in-out infinite;
+    z-index: 4;
+  }
+  @keyframes bppulse {
+    0%, 100% { box-shadow: inset 0 0 0 2px rgba(226,200,120,.35); }
+    50%      { box-shadow: inset 0 0 0 5px rgba(226,200,120,.95); }
   }
   @keyframes bplock {
     0%   { box-shadow: inset 0 0 0 4px #e2c878; }
@@ -203,7 +213,7 @@
 <div class="panwrap">
   <div id="bpdemo" role="application" aria-label="Playable Big Picture demo: swap tiles to rebuild the fossil panorama"></div>
 </div>
-<div class="pancaption" id="bpcaption">A real Big Picture panorama — and a real puzzle. Scroll it, then tap two tiles to swap them. Right placements lock in.</div>
+<div class="pancaption" id="bpcaption">A real Big Picture panorama with a few tiles out of place. Drag a tile onto another to swap them — right placements lock in. Scroll to find them all.</div>
 <script>
 (function () {
   // The playable Big Picture demo: the panorama above, chopped 3x13 and
@@ -217,14 +227,25 @@
   board.style.width = (COLS * T) + 'px';
 
   // slot i holds piece perm[i]; piece p belongs at slot p
-  var N = ROWS * COLS, perm = [], tiles = [], sel = -1, locked = [];
+  var N = ROWS * COLS, perm = [], tiles = [], locked = [];
+  // EASY-DEMO scramble: the panorama starts MOSTLY assembled — just seven
+  // swapped pairs to fix, each within two columns of home, spread along
+  // the scene. A demo that frustrates is worse than nothing.
+  perm = [];
   for (var i = 0; i < N; i++) perm.push(i);
-  do {
-    for (var i = N - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var t = perm[i]; perm[i] = perm[j]; perm[j] = t;
-    }
-  } while (countHome() > 3);                   // nearly fully scrambled
+  var used = {}, pairsMade = 0, attempts = 0;
+  while (pairsMade < 7 && attempts++ < 500) {
+    var a = Math.floor(Math.random() * N);
+    var colA = a % COLS;
+    var dc = 1 + Math.floor(Math.random() * 2);          // 1 or 2 columns away
+    var colB = colA + (Math.random() < 0.5 ? -dc : dc);
+    if (colB < 0 || colB >= COLS) continue;
+    var b = Math.floor(Math.random() * ROWS) * COLS + colB;
+    if (a === b || used[a] || used[b]) continue;
+    used[a] = used[b] = true;
+    var t = perm[a]; perm[a] = perm[b]; perm[b] = t;
+    pairsMade++;
+  }
 
   function countHome() {
     var n = 0;
@@ -262,19 +283,83 @@
     for (var i = 0; i < N; i++) if (perm[i] === p) return i;
     return -1;
   }
-  board.addEventListener('click', function (e) {
+  // DRAG-SWAP, faithful to the game: pick a tile up, carry it (the well
+  // auto-scrolls at its edges), drop it on a cell — the two tiles trade
+  // places. Locked tiles can't be picked up or displaced.
+  var wrap = board.parentElement;
+  var drag = null, scrollTimer = null;
+  // Help arrives fashionably late: ~10s after the first pickup, Bryan
+  // offers to pulse each tile's home — and admits only the DEMO does this.
+  var hintsOn = false, helpTimer = null;
+  function armHelp() {
+    if (hintsOn || helpTimer) return;
+    helpTimer = setTimeout(function () {
+      hintsOn = true;
+      caption.innerHTML = 'Here, let me help you — pick a tile up and I\u2019ll pulse the spot it belongs. <em>(Demo courtesy only. The real game lets you sweat.)</em>';
+    }, 10000);
+  }
+
+  function cellFromPoint(x, y) {
+    var r = board.getBoundingClientRect();
+    var col = Math.floor((x - r.left) / T);
+    var row = Math.floor((y - r.top) / T);
+    if (col < 0 || col >= COLS || row < 0 || row >= ROWS) return -1;
+    return row * COLS + col;
+  }
+  function startEdgeScroll(dir) {
+    if (scrollTimer) return;
+    scrollTimer = setInterval(function () { wrap.scrollLeft += dir * 9; }, 16);
+  }
+  function stopEdgeScroll() {
+    if (scrollTimer) { clearInterval(scrollTimer); scrollTimer = null; }
+  }
+
+  board.addEventListener('pointerdown', function (e) {
     var el = e.target.closest('.bptile');
-    if (!el) return;
+    if (!el || el.classList.contains('locked')) return;
     var slot = slotOf(el);
-    if (slot < 0 || locked[slot]) return;
-    if (sel === slot) {                        // deselect
-      el.classList.remove('sel'); sel = -1; return;
+    if (slot < 0) return;
+    e.preventDefault();
+    el.setPointerCapture(e.pointerId);
+    drag = { el: el, slot: slot,
+             offX: e.clientX - el.getBoundingClientRect().left,
+             offY: e.clientY - el.getBoundingClientRect().top };
+    el.classList.add('drag');
+    armHelp();
+    // once help is on, pulse the cell this piece BELONGS in
+    if (hintsOn) {
+      var home = tiles.indexOf(el);            // piece id == home slot
+      if (home !== slot) {
+        drag.hintEl = tiles[perm[home]];
+        drag.hintEl.classList.add('homehint');
+      }
     }
-    if (sel < 0) {                             // first pick
-      sel = slot; el.classList.add('sel'); return;
+  });
+  board.addEventListener('pointermove', function (e) {
+    if (!drag) return;
+    e.preventDefault();
+    var r = board.getBoundingClientRect();
+    drag.el.style.left = (e.clientX - r.left - drag.offX) + 'px';
+    drag.el.style.top = (e.clientY - r.top - drag.offY) + 'px';
+    // edge auto-scroll: carry a tile any distance across the panorama
+    var w = wrap.getBoundingClientRect();
+    if (e.clientX > w.right - 34) startEdgeScroll(1);
+    else if (e.clientX < w.left + 34) startEdgeScroll(-1);
+    else stopEdgeScroll();
+  });
+  function endDrag(e) {
+    if (!drag) return;
+    stopEdgeScroll();
+    var d = drag; drag = null;
+    d.el.classList.remove('drag');
+    if (d.hintEl) d.hintEl.classList.remove('homehint');
+    var target = cellFromPoint(e.clientX - d.offX + T / 2, e.clientY - d.offY + T / 2);
+    var a = d.slot;
+    if (target < 0 || target === a || locked[target]) {
+      place(d.el, a);                          // no landing — glide home
+      return;
     }
-    var a = sel, b = slot; sel = -1;
-    tiles[perm[a]].classList.remove('sel');
+    var b = target;
     var t = perm[a]; perm[a] = perm[b]; perm[b] = t;
     place(tiles[perm[a]], a);
     place(tiles[perm[b]], b);
@@ -283,7 +368,9 @@
     if (countHome() === N) {
       caption.innerHTML = 'You rebuilt the whole thing! That was one of a hundred panoramas — <a href="https://apps.apple.com/app/id6788990294">get Pix Mix on the App&nbsp;Store</a>.';
     }
-  });
+  }
+  board.addEventListener('pointerup', endDrag);
+  board.addEventListener('pointercancel', endDrag);
 })();
 </script>
 
