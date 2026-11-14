@@ -103,6 +103,12 @@
     font-size: 15px;
   }
   footer a { color: var(--gold); }
+  .game.withshot { display: flex; gap: 18px; align-items: flex-start; }
+  .game.withshot .gshot {
+    width: 150px; height: auto; flex-shrink: 0;
+    border-radius: 10px; border: 1px solid var(--line);
+  }
+  @media (max-width: 480px) { .game.withshot .gshot { width: 110px; } }
 </style>
 </head>
 <body>
@@ -117,32 +123,40 @@
 </div>
 <p>Four mahjong games on one table, hosted by Bryan, who took the job for the money and would like you to know it.</p>
 <a class="storebtn" href="https://apps.apple.com/us/app/id6806711694">Download on the App Store</a>
-<div class="game">
-  <strong>Mahjong Solitaire</strong>
-  <p>The classic tile-matching game with a tray. Tap a free tile and it hops up to the tray; set its match beside it and the pair slams together and shatters. The tray holds five, so you can line up your next moves instead of hunting for them.</p>
+<div class="game withshot">
+  <img class="gshot" src="../assets/shots/mahjongparty/02_solitaire.jpg" alt="Mahjong Solitaire with animal tiles">
+  <div>
+    <strong>Mahjong Solitaire</strong>
+    <p>The classic tile-matching game with a tray. Tap a free tile and it hops up to the tray; set its match beside it and the pair slams together and shatters. The tray holds five, so you can line up your next moves instead of hunting for them.</p>
+  </div>
 </div>
-<div class="game">
-  <strong>Mahjong Slide</strong>
-  <p>Every tile is face up. Tap two matching tiles that can see each other along a row or column and they clear. When no pair is in sight, slide a tile to push the others into line. Five board sizes and a daily board for each size with a Game Center leaderboard.</p>
+<div class="game withshot">
+  <img class="gshot" src="../assets/shots/mahjongparty/03_slide.jpg" alt="Mahjong Slide">
+  <div>
+    <strong>Mahjong Slide</strong>
+    <p>Every tile is face up. Tap two matching tiles that can see each other along a row or column and they clear. When no pair is in sight, slide a tile to push the others into line. Five board sizes and a daily board for each size with a Game Center leaderboard.</p>
+  </div>
 </div>
-<div class="game">
-  <strong>Mahjong Nines</strong>
-  <p>A two-player duel against Bryan. Nine columns for you, nine for him. Push a tile into the top of one of your columns and whatever pops out the bottom is the next play. Fill every column with four of a kind and the table is yours.</p>
+<div class="game withshot">
+  <img class="gshot" src="../assets/shots/mahjongparty/04_nines.jpg" alt="Mahjong Nines against Bryan">
+  <div>
+    <strong>Mahjong Nines</strong>
+    <p>A two-player duel against Bryan. Nine columns for you, nine for him. Push a tile into the top of one of your columns and whatever pops out the bottom is the next play. Fill every column with four of a kind and the table is yours.</p>
+  </div>
 </div>
-<div class="game">
-  <strong>Tile-A-Whirl</strong>
-  <p>Nines with a pool of tiles spinning in the middle and a dozen aliens mixed in to gum up the works. Draw from the pool, feed your columns, and first to fill every column wins.</p>
+<div class="game withshot">
+  <img class="gshot" src="../assets/shots/mahjongparty/05_whirl.jpg" alt="Tile-A-Whirl">
+  <div>
+    <strong>Tile-A-Whirl</strong>
+    <p>Nines with a pool of tiles spinning in the middle and a dozen aliens mixed in to gum up the works. Draw from the pool, feed your columns, and first to fill every column wins.</p>
+  </div>
 </div>
 <h2>Tile sets</h2>
 <p>Play with real mahjong tiles or swap in animals, birds, sea life, dinosaurs, food, fruit, garden, toys, transport, famous paintings and sculptures, a gallery of characters, and the aliens.</p>
 <p>Made for iPhone and iPad.</p>
-<h2>Screenshots</h2>
+<h2>More screenshots</h2>
 <div class="shotrow">
   <img src="../assets/shots/mahjongparty/01_launcher.jpg" alt="The four games on the Mahjong Party menu">
-  <img src="../assets/shots/mahjongparty/02_solitaire.jpg" alt="Mahjong Solitaire with animal tiles">
-  <img src="../assets/shots/mahjongparty/03_slide.jpg" alt="Mahjong Slide">
-  <img src="../assets/shots/mahjongparty/04_nines.jpg" alt="Mahjong Nines against Bryan">
-  <img src="../assets/shots/mahjongparty/05_whirl.jpg" alt="Tile-A-Whirl">
 </div>
 <footer>
   &copy; 2026 Brayne Games &middot; <a href="../privacy.html">Privacy Policy</a> &middot; <a href="mailto:admin@BrayneGames.com">admin@BrayneGames.com</a>
