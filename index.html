@@ -60,7 +60,9 @@
     margin-top: 8px;
   }
   .card {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     background: var(--panel);
     border: 1px solid var(--line);
     border-radius: 12px;
@@ -69,10 +71,7 @@
     color: var(--ink);
     transition: border-color .15s, transform .15s;
   }
-  .card:hover {
-    border-color: var(--gold);
-    transform: translateY(-2px);
-  }
+  .card p { flex: 1; }
   .card img {
     width: 84px;
     height: 84px;
@@ -110,6 +109,43 @@
     color: var(--gold);
     border-color: var(--gold);
   }
+  .stores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .store {
+    display: inline-block;
+    padding: 9px 16px;
+    border-radius: 999px;
+    background: var(--gold);
+    color: #23252b;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+  }
+  .store:hover { filter: brightness(1.1); }
+  .more {
+    display: inline-block;
+    margin-top: 12px;
+    color: var(--gold);
+    font-size: 15px;
+    text-decoration: none;
+  }
+  .more:hover { text-decoration: underline; }
+  .card.book img {
+    width: 120px;
+    height: auto;
+    border-radius: 6px;
+  }
+  h3.section {
+    margin: 44px 0 14px;
+    font-size: 15px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
   footer {
     margin-top: 56px;
     padding-top: 24px;
@@ -133,38 +169,74 @@
 <header>
   <div class="studio">Brayne Games</div>
   <h1>Games with personality.</h1>
-  <div class="tagline">Puzzle, word, and board games for iOS and Android — hosted by Bryan Brayne.</div>
+  <div class="tagline">Puzzle games for iPhone and Android, and puzzle books, hosted by Bryan Brayne.</div>
 </header>
 
+<h3 class="section">Apps</h3>
 <div class="cards">
 
-  <a class="card" href="apps/cryptograms.html">
+  <div class="card">
+    <img src="assets/pixmix-icon.png" alt="Pix Mix app icon">
+    <h2>Bryan's Pix Mix</h2>
+    <p>Three picture games in one: rebuild scrambled art, spin exploded 3-D shards back into focus, and piece together giant panoramas.</p>
+    <div class="stores">
+      <a class="store" href="https://apps.apple.com/us/app/id6788990294">App Store</a>
+      <a class="store" href="https://play.google.com/store/apps/details?id=com.braynegames.pixmix">Google Play</a>
+    </div>
+    <a class="more" href="apps/pixmix.html">More about Bryan's Pix Mix</a>
+  </div>
+
+  <div class="card">
+    <img src="assets/standoff-icon.png" alt="Standoff app icon">
+    <h2>Brayne Games Standoff</h2>
+    <p>Three chess-logic puzzles — Standoff, Queens, and Rooks &amp; Bishops. Place the pieces so nobody can capture anybody.</p>
+    <div class="stores">
+      <a class="store" href="https://apps.apple.com/us/app/id6760240247">App Store</a>
+    </div>
+    <a class="more" href="apps/standoff.html">More about Brayne Games Standoff</a>
+  </div>
+
+  <div class="card">
+    <img src="assets/mahjongparty-icon.png" alt="Mahjong Party app icon">
+    <h2>Bryan's Mahjong Party</h2>
+    <p>Four mahjong games: Mahjong Solitaire, Mahjong Slide, Mahjong Nines, and Tile-A-Whirl.</p>
+    <div class="stores">
+      <a class="store" href="https://apps.apple.com/us/app/id6806711694">App Store</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="assets/pinspin-icon.png" alt="Pin Spin app icon">
+    <h2>Bryan's Pin Spin</h2>
+    <p>A game of timing and patience. Tap to send your pins into the spinning wheel without hitting any others.</p>
+    <div class="stores">
+      <a class="store" href="https://apps.apple.com/us/app/id6829548109">App Store</a>
+    </div>
+  </div>
+
+  <div class="card">
     <img src="assets/cryptograms-icon.png" alt="Cryptograms app icon">
     <h2>Cryptograms</h2>
     <p>Crack the code, reveal the quote. Classic letter-substitution puzzles with hundreds of famous quotations.</p>
-    <span class="badge live">On Google Play</span>
-  </a>
+    <div class="stores">
+      <a class="store" href="https://play.google.com/store/apps/details?id=com.hillhavengames.cryptograms">Google Play</a>
+    </div>
+    <a class="more" href="apps/cryptograms.html">More about Cryptograms</a>
+  </div>
 
-  <a class="card" href="apps/pixmix.html">
-    <img src="assets/pixmix-icon.png" alt="Pix Mix app icon">
-    <h2>Pix Mix</h2>
-    <p>Three picture games in one: rebuild scrambled art, spin exploded 3-D shards back into focus, and piece together giant panoramas.</p>
-    <span class="badge live">On the App Store &amp; Google Play</span>
-  </a>
+</div>
 
-  <a class="card" href="apps/braynegames.html">
-    <img src="assets/braynegames-icon.png" alt="Brayne Games app icon">
-    <h2>Brayne Games</h2>
-    <p>The flagship collection — over twenty puzzle, word, and board games in a single app, with opponents you'll love to beat.</p>
-    <span class="badge live">On Google Play</span>
-  </a>
+<h3 class="section">Books</h3>
+<div class="cards">
 
-  <a class="card" href="apps/standoff.html">
-    <img src="assets/standoff-icon.png" alt="Standoff app icon">
-    <h2>Standoff</h2>
-    <p>Three chess-logic puzzles — Standoff, Queens, and Rooks &amp; Bishops. Place the pieces so nobody can capture anybody.</p>
-    <span class="badge live">On the App Store</span>
-  </a>
+  <div class="card book">
+    <img src="assets/boredgames-cover.jpg" alt="Bored Games book cover">
+    <h2>Bored Games</h2>
+    <p>A puzzle book with 150+ puzzles for your kind of bored: sudokus, cryptograms, cross sums, word puzzles, logic, number puzzles, and more.</p>
+    <div class="stores">
+      <a class="store" href="https://www.amazon.com/dp/B0HQGRXJDF">Amazon</a>
+    </div>
+  </div>
 
 </div>
 
