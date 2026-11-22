@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bryan&#x27;s Hangman — Brayne Games</title>
+<meta name="description" content="The classic word game, with Bryan on the rope. Guess the word a letter at a time. Seven misses and he&#x27;s done.">
+<style>
+  :root {
+    --bg: #23252b;
+    --panel: #2b2e35;
+    --ink: #e8e4da;
+    --muted: #a8a396;
+    --gold: #c9a35c;
+    --line: #3a3d45;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
+  .back {
+    display: inline-block;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  .back:hover { text-decoration: underline; }
+  .apphead {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+  }
+  .apphead img {
+    width: 110px;
+    height: 110px;
+    border-radius: 24px;
+    border: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+  h1 { margin: 0 0 6px; font-size: 32px; line-height: 1.2; }
+  .badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+  }
+  .storebtn {
+    display: inline-block;
+    background: var(--gold);
+    color: #23252b;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    margin: 8px 8px 4px 0;
+  }
+  .storebtn:hover { filter: brightness(1.08); }
+  h2 { font-size: 21px; margin: 36px 0 10px; color: var(--gold); }
+  ul { margin: 10px 0; padding-left: 22px; }
+  li { margin: 6px 0; }
+  .game {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 0 0 16px;
+  }
+  .game strong { color: var(--gold); }
+  .game p { margin: 6px 0 0; color: var(--ink); }
+  .shotrow {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding: 4px 0 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .shotrow img {
+    height: 420px;
+    width: auto;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+  footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 15px;
+  }
+  footer a { color: var(--gold); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="../index.html">&larr; All games</a>
+<div class="apphead">
+  <img src="../assets/hangman-icon.png" alt="Bryan&#x27;s Hangman app icon">
+  <div>
+    <h1>Bryan&#x27;s Hangman</h1>
+    <span class="badge">Available on the App Store</span>
+  </div>
+</div>
+<p>Bryan&#x27;s Hangman is the word game you played on paper, with Bryan standing in for the stick figure. Pick letters from the keyboard. Each right letter fills in the word. Each wrong letter draws another piece of him onto the gallows. Seven misses and the round is over. Finish the word first and he drops down and runs off, which he treats as a personal triumph.</p>
+<a class="storebtn" href="https://apps.apple.com/us/app/id6830493919">Download on the App Store</a>
+<p>The words are everyday ones by default, the kind everybody knows. Turn on Word Nerd Mode in Settings and the whole dictionary opens up, with words from six to thirteen letters. Over eleven thousand words in all, so the game stays fresh.</p>
+<p>The letters are real wooden pieces on a felt table, or felt letters on a wooden one. Three tables to choose from. Sounds can be turned off in Settings.</p>
+<p>Bryan is the brain in a tie who hosts the game. He is not thrilled about this one. He will stand there anyway.</p>
+<p>Free. Made for iPhone and iPad.</p>
+<h2>Screenshots</h2>
+<div class="shotrow">
+  <img src="../assets/shots/hangman/01.jpg" alt="A new word">
+  <img src="../assets/shots/hangman/02.jpg" alt="Bryan on the gallows">
+  <img src="../assets/shots/hangman/03.jpg" alt="Word solved">
+</div>
+<footer>
+  &copy; 2026 Brayne Games &middot; <a href="../privacy.html">Privacy Policy</a> &middot; <a href="mailto:admin@BrayneGames.com">admin@BrayneGames.com</a>
+</footer>
+
+</div>
+<script data-goatcounter="https://braynegames.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
